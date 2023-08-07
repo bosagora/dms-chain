@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if docker-compose ls | grep -q 'boa-scan'
+then
+  ./agora/cmd.sh stop-boa-scan
+  sleep 2
+fi
+
+if docker-compose ls | grep -q 'postgres'
+then
+  ./agora/cmd.sh stop-db
+  sleep 2
+fi
+
+if docker-compose ls | grep -q 'nodes'
+then
+  ./agora/cmd.sh stop
+  sleep 2
+fi
+
+./agora/cmd.sh start-db
+sleep 5
+
+./agora/cmd.sh init
+
+./agora/cmd.sh start
+
+sleep 5
+
+./agora/cmd.sh start-boa-scan

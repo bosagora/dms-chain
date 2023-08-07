@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [[ -n $(docker-compose ls | grep "boa-scan") ]]
+then
+  ./agora/cmd.sh stop-boa-scan
+fi
+
+if [[ -n $(docker-compose ls | grep "postgres") ]]
+then
+  ./agora/cmd.sh stop-db
+fi
+
+if [[ -n $(docker-compose ls | grep "nodes") ]]
+then
+  ./agora/cmd.sh stop
+fi
