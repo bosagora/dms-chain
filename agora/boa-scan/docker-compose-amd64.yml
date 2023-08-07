@@ -1,9 +1,13 @@
 version: '3.3'
 services:
   redis_db:
-    extends:
-      file: ./services/docker-compose-redis.yml
-      service: redis_db
+    image: 'redis:alpine'
+    ports:
+      - "6379:6379"
+    container_name: redis_db
+    command: redis-server
+    volumes:
+      - ./redis-data:/data
 
   boascan:
     depends_on:
