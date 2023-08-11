@@ -42,7 +42,7 @@ if [ "$dirname" = "agora" ]; then
   agora_root="$(pwd)"
 fi
 
-if [ "$1" = "init" ]; then
+if [ "$1" = "clear" ]; then
 
     if [ "$system" == "linux" ]; then
         sudo rm -rf "$agora_root"/chain
@@ -54,11 +54,20 @@ if [ "$1" = "init" ]; then
 
     mkdir -p "$agora_root"/chain/node1
     mkdir -p "$agora_root"/chain/node1/el
-    mkdir -p "$agora_root"/chain/node1/cl
 
     cp -rf "$agora_root"/config/el/template/node1/* "$agora_root"/chain/node1/el
 
     docker run -it -v "$agora_root"/chain/node1/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis.json
+
+elif [ "$1" = "init" ]; then
+
+    if [ "$system" == "linux" ]; then
+        sudo rm -rf "$agora_root"/chain
+    else
+        rm -rf "$agora_root"/chain
+    fi
+
+    unzip -q "$agora_root"/chain.zip -d "$agora_root"
 
 elif [ "$1" = "start" ]; then
 
