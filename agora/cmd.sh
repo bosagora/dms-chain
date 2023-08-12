@@ -107,6 +107,14 @@ elif [ "$1" = "stop-boa-scan" ]; then
         docker-compose -f "$agora_root"/boa-scan/docker-compose-arm64.yml down
     fi
 
+elif [ "$1" = "start-faker" ]; then
+
+  docker-compose -f "$agora_root"/faker/docker-compose.yml up -d
+
+elif [ "$1" = "stop-faker" ]; then
+
+  docker-compose -f "$agora_root"/faker/docker-compose.yml down
+
 else
 
     color "31" "Process '$1' is not found!"

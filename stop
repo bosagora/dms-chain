@@ -1,16 +1,21 @@
 #!/bin/bash
 
-if [[ -n $(docker-compose ls | grep "boa-scan") ]]
+if docker-compose ls | grep -q 'faker'
+then
+  ./agora/cmd.sh stop-faker
+fi
+
+if docker-compose ls | grep -q 'boa-scan'
 then
   ./agora/cmd.sh stop-boa-scan
 fi
 
-if [[ -n $(docker-compose ls | grep "postgres") ]]
+if docker-compose ls | grep -q 'postgres'
 then
   ./agora/cmd.sh stop-db
 fi
 
-if [[ -n $(docker-compose ls | grep "nodes") ]]
+if docker-compose ls | grep -q 'nodes'
 then
   ./agora/cmd.sh stop
 fi
