@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if docker-compose ls | grep -q 'faker'
+then
+  ./agora/cmd.sh stop-faker
+  sleep 2
+fi
+
 if docker-compose ls | grep -q 'boa-scan'
 then
   ./agora/cmd.sh stop-boa-scan
@@ -28,3 +34,7 @@ sleep 5
 sleep 5
 
 ./agora/cmd.sh start-boa-scan
+
+sleep 5
+
+./agora/cmd.sh start-faker
