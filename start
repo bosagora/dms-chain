@@ -1,5 +1,21 @@
 #!/bin/bash
 
+if ! docker network ls | grep -q 'bosagora_network'
+then
+  docker network create --subnet=172.200.0.0/16 bosagora_network
+  sleep 2
+fi
+
+if docker-compose ls | grep -q 'graph'
+then
+  ./agora/cmd.sh stop-graph
+fi
+
+if docker-compose ls | grep -q 'ipfs-private'
+then
+  ./agora/cmd.sh stop-ipfs
+fi
+
 if docker-compose ls | grep -q 'faker'
 then
   ./agora/cmd.sh stop-faker
@@ -24,17 +40,30 @@ then
   sleep 2
 fi
 
-./agora/cmd.sh start-db
-sleep 5
-
 ./agora/cmd.sh init
 
 ./agora/cmd.sh start
 
+sleep 10
+
+./agora/cmd.sh start-db
+
 sleep 5
+
+./agora/cmd.sh init-db
+
+sleep 10
 
 ./agora/cmd.sh start-boa-scan
 
-sleep 5
+sleep 10
+
+./agora/cmd.sh start-ipfs
+
+sleep 10
+
+./agora/cmd.sh start-graph
+
+sleep 10
 
 ./agora/cmd.sh start-faker

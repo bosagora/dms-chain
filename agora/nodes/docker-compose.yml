@@ -1,7 +1,7 @@
 version: '3.3'
 services:
-  node1:
-    container_name: node1
+  agora-el-node:
+    container_name: agora-el-node
     image: bosagora/agora-el-node:v2.0.1
     ports:
       - "8545:8545"
@@ -19,3 +19,11 @@ services:
       --password=/config/private/password.txt
       --mine=true
       --miner.etherbase=0xF85B2dbA83A08DEe6E24E4461E0334e7384896F9
+    networks:
+      - bosagora_network
+
+networks:
+  bosagora_network:
+    driver: bridge
+    external: true
+    internal: true

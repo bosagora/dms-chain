@@ -8,6 +8,8 @@ services:
     command: redis-server
     volumes:
       - ./redis-data:/data
+    networks:
+      - bosagora_network
 
   boascan:
     depends_on:
@@ -17,8 +19,6 @@ services:
     stop_grace_period: 5m
     container_name: 'boascan'
     command: bash -c "bin/blockscout eval \"Elixir.Explorer.ReleaseTasks.create_and_migrate()\" && bin/blockscout start"
-    extra_hosts:
-      - 'host.docker.internal:host-gateway'
     env_file:
       - ../config/boascan/common-boascan.env
     environment:
@@ -30,3 +30,11 @@ services:
       - "14000:14000"
     volumes:
       - ./logs/:/app/logs/
+    networks:
+      - bosagora_network
+
+networks:
+  bosagora_network:
+    driver: bridge
+    external: true
+    internal: true
