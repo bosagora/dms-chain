@@ -124,6 +124,9 @@ elif [ "$1" = "stop-faker" ]; then
 
 elif [ "$1" = "start-ipfs" ]; then
 
+  export CLUSTER_SECRET=$(od -vN 32 -An -tx1 /dev/urandom | tr -d ' \n')
+  echo $CLUSTER_SECRET
+
   docker-compose -f "$agora_root"/ipfs-private/docker-compose.yml up -d
 
 elif [ "$1" = "stop-ipfs" ]; then
