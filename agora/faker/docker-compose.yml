@@ -5,7 +5,7 @@ services:
     container_name: dms-osx-faker
     restart: always
     environment:
-        RPC_URL: http://agora-el-node:8545
+      RPC_URL: http://agora-el-node:8545
     networks:
       - bosagora_network
 

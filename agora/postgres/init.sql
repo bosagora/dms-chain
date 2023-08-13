@@ -1,2 +1,4 @@
-CREATE DATABASE blockscout;
-CREATE DATABASE graph;
+CREATE
+DATABASE blockscout;
+CREATE
+DATABASE graph;
