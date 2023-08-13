@@ -1,5 +1,15 @@
 #!/bin/bash
 
+if docker-compose ls | grep -q 'graph'
+then
+  ./agora/cmd.sh stop-graph
+fi
+
+if docker-compose ls | grep -q 'ipfs-private'
+then
+  ./agora/cmd.sh stop-ipfs
+fi
+
 if docker-compose ls | grep -q 'faker'
 then
   ./agora/cmd.sh stop-faker
@@ -18,4 +28,9 @@ fi
 if docker-compose ls | grep -q 'nodes'
 then
   ./agora/cmd.sh stop
+fi
+
+if docker network ls | grep -q 'bosagora_network'
+then
+  docker network rm bosagora_network
 fi

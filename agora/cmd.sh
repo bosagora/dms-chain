@@ -85,11 +85,16 @@ elif [ "$1" = "start-db" ]; then
 
     docker-compose -f "$agora_root"/postgres/docker-compose.yml up -d
 
+elif [ "$1" = "init-db" ]; then
+
+    chmod 0600 "$agora_root"/postgres/.pgpass
+    docker run -it --rm --net=host -v "$agora_root"/postgres:/src -v "$agora_root"/postgres/.pgpass:/root/.pgpass postgres:12.0 psql -f /src/init.sql -d db -h 0.0.0.0 -U agora > /dev/null
+
 elif [ "$1" = "stop-db" ]; then
 
     docker-compose -f "$agora_root"/postgres/docker-compose.yml down
 
-    docker volume rm postgres_postgres-db
+    docker volume rm postgres_postgres_db
 
 elif [ "$1" = "start-boa-scan" ]; then
 
@@ -107,6 +112,8 @@ elif [ "$1" = "stop-boa-scan" ]; then
         docker-compose -f "$agora_root"/boa-scan/docker-compose-arm64.yml down
     fi
 
+    docker volume rm boa-scan_redis_db
+
 elif [ "$1" = "start-faker" ]; then
 
   docker-compose -f "$agora_root"/faker/docker-compose.yml up -d
@@ -114,6 +121,29 @@ elif [ "$1" = "start-faker" ]; then
 elif [ "$1" = "stop-faker" ]; then
 
   docker-compose -f "$agora_root"/faker/docker-compose.yml down
+
+elif [ "$1" = "start-ipfs" ]; then
+
+  docker-compose -f "$agora_root"/ipfs-private/docker-compose.yml up -d
+
+elif [ "$1" = "stop-ipfs" ]; then
+
+  docker-compose -f "$agora_root"/ipfs-private/docker-compose.yml down
+
+    docker volume rm ipfs-private_node0_ipfs
+    docker volume rm ipfs-private_node0_ipfs_cluster
+    docker volume rm ipfs-private_node1_ipfs
+    docker volume rm ipfs-private_node1_ipfs_cluster
+    docker volume rm ipfs-private_node2_ipfs
+    docker volume rm ipfs-private_node2_ipfs_cluster
+
+elif [ "$1" = "start-graph" ]; then
+
+  docker-compose -f "$agora_root"/graph/docker-compose.yml up -d
+
+elif [ "$1" = "stop-graph" ]; then
+
+  docker-compose -f "$agora_root"/graph/docker-compose.yml down
 
 else
 

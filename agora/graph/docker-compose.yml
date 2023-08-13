@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  graph-node:
+    platform: linux/amd64
+    image: graphprotocol/graph-node:latest
+    container_name: graph-node
+    ports:
+      - '8000:8000'
+      - '8001:8001'
+      - '8020:8020'
+      - '8030:8030'
+      - '8040:8040'
+    restart: always
+    environment:
+      postgres_host: postgres
+      postgres_user: agora
+      postgres_pass: 12345678
+      postgres_db: graph
+      ipfs: "ipfs0:5001"
+      ethereum: "devnet:http://agora-el-node:8545"
+      GRAPH_LOG: info
+      GRAPH_ALLOW_NON_DETERMINISTIC_IPFS: 'true'
+    networks:
+      - bosagora_network
+
+networks:
+  bosagora_network:
+    driver: bridge
+    external: true
+    internal: true

@@ -10,17 +10,19 @@ services:
     environment:
       POSTGRES_PASSWORD: 12345678
       POSTGRES_USER: agora
-      POSTGRES_DB: db
+      POSTGRES_DB: graph
       PGDATA: /postgresql/data
       POSTGRES_INITDB_ARGS: "-E UTF8 --locale=C"
     volumes:
-      - postgres-db:/postgresql/data
+      - postgres_db:/postgresql/data
     networks:
-      - default_network
-
-networks:
-  default_network:
-    driver: bridge
+      - bosagora_network
 
 volumes:
-  postgres-db:
+  postgres_db:
+
+networks:
+  bosagora_network:
+    driver: bridge
+    external: true
+    internal: true
