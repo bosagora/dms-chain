@@ -148,6 +148,14 @@ elif [ "$1" = "stop-graph" ]; then
 
   docker-compose -f "$agora_root"/graph/docker-compose.yml down
 
+elif [ "$1" = "create-network" ]; then
+
+  docker network create --subnet=172.200.0.0/16 bosagora_network
+
+elif [ "$1" = "remove-network" ]; then
+
+  docker network rm bosagora_network
+
 else
 
   color "31" "Process '$1' is not found!"

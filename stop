@@ -32,5 +32,5 @@ fi
 
 if docker network ls | grep -q 'bosagora_network'
 then
-  docker network rm bosagora_network
+  ./agora/cmd.sh remove-network
 fi
