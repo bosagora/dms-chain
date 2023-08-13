@@ -6,11 +6,16 @@ services:
     ports:
       - '5432:5432'
     restart: always
-    command: postgres -c 'max_connections=1000'
+    command:
+      [
+        "postgres",
+        "-c", "shared_preload_libraries=pg_stat_statements",
+        "-c", "max_connections=1000"
+      ]
     environment:
       POSTGRES_PASSWORD: 12345678
       POSTGRES_USER: agora
-      POSTGRES_DB: graph
+      POSTGRES_DB: postgres
       PGDATA: /postgresql/data
       POSTGRES_INITDB_ARGS: "-E UTF8 --locale=C"
     volumes:

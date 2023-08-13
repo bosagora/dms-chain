@@ -88,7 +88,7 @@ elif [ "$1" = "start-db" ]; then
 elif [ "$1" = "init-db" ]; then
 
   chmod 0600 "$agora_root"/postgres/.pgpass
-  docker run -it --rm --net=host -v "$agora_root"/postgres:/src -v "$agora_root"/postgres/.pgpass:/root/.pgpass postgres:12.0 psql -f /src/init.sql -d db -h 0.0.0.0 -U agora > /dev/null
+  docker run -it --rm --net=host -v "$agora_root"/postgres:/src -v "$agora_root"/postgres/.pgpass:/root/.pgpass postgres:12.0 psql -f /src/init.sql -d postgres -h 0.0.0.0 -U agora > /dev/null
 
 elif [ "$1" = "stop-db" ]; then
 
