@@ -7,7 +7,7 @@ services:
     container_name: redis_db
     command: redis-server
     volumes:
-      - ./redis-data:/data
+      - redis_db:/data
     networks:
       - bosagora_network
 
@@ -32,6 +32,9 @@ services:
       - ./logs/:/app/logs/
     networks:
       - bosagora_network
+
+volumes:
+  redis_db:
 
 networks:
   bosagora_network:
