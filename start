@@ -69,3 +69,7 @@ sleep 10
 sleep 10
 
 ./agora/cmd.sh start-faker
+
+sleep 10
+
+./agora/cmd.sh deploy-subgraph

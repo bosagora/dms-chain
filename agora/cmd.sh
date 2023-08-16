@@ -156,6 +156,29 @@ elif [ "$1" = "remove-network" ]; then
 
   docker network rm bosagora_network
 
+elif [ "$1" = "deploy-subgraph" ]; then
+
+  CURRENT_POS="$(pwd)"
+
+  dirname2=${PWD##*/}
+  if [ "$dirname2" = "agora" ]; then
+    cd ../submodules/dms-osx
+  else
+    cd submodules/dms-osx
+  fi
+
+  yarn install
+
+  cd packages/subgraph
+  yarn run build:contracts
+  yarn run manifest
+  yarn run build
+  yarn run create:devnet
+
+  npx graph deploy bosagora/osx-devnet --node http://localhost:8020 --ipfs http://localhost:5001  --version-label v0.0.1
+
+  cd "$CURRENT_POS"
+
 else
 
   color "31" "Process '$1' is not found!"
