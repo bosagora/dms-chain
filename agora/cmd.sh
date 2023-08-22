@@ -162,6 +162,25 @@ elif [ "$1" = "deploy-subgraph" ]; then
 
   dirname2=${PWD##*/}
   if [ "$dirname2" = "agora" ]; then
+    cd ../submodules/del-osx
+  else
+    cd submodules/del-osx
+  fi
+
+  yarn install
+
+  cd packages/subgraph
+  yarn run build:contracts
+  yarn run manifest
+  yarn run build
+  yarn run create:devnet
+
+  npx graph deploy bosagora/del-osx-devnet --node http://localhost:8020 --ipfs http://localhost:5001  --version-label v0.0.1
+
+  cd "$CURRENT_POS"
+
+  dirname2=${PWD##*/}
+  if [ "$dirname2" = "agora" ]; then
     cd ../submodules/dms-osx
   else
     cd submodules/dms-osx
@@ -175,7 +194,7 @@ elif [ "$1" = "deploy-subgraph" ]; then
   yarn run build
   yarn run create:devnet
 
-  npx graph deploy bosagora/osx-devnet --node http://localhost:8020 --ipfs http://localhost:5001  --version-label v0.0.1
+  npx graph deploy bosagora/dms-osx-devnet --node http://localhost:8020 --ipfs http://localhost:5001  --version-label v0.0.1
 
   cd "$CURRENT_POS"
 

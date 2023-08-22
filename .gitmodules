@@ -1,3 +1,6 @@
 [submodule "submodules/dms-osx"]
 	path = submodules/dms-osx
 	url = https://github.com/bosagora/dms-osx.git
+[submodule "submodules/del-osx"]
+	path = submodules/del-osx
+	url = https://github.com/bosagora/del-osx.git
