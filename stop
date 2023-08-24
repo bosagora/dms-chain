@@ -30,6 +30,11 @@ then
   ./agora/cmd.sh stop
 fi
 
+if docker-compose ls | grep -q 'relay'
+then
+  ./agora/cmd.sh stop-relay
+fi
+
 if docker network ls | grep -q 'bosagora_network'
 then
   ./agora/cmd.sh remove-network

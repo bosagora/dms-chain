@@ -36,6 +36,11 @@ then
   sleep 2
 fi
 
+if docker-compose ls | grep -q 'relay'
+then
+  ./agora/cmd.sh stop-relay
+fi
+
 if docker-compose ls | grep -q 'nodes'
 then
   ./agora/cmd.sh stop
@@ -69,6 +74,10 @@ sleep 10
 sleep 10
 
 ./agora/cmd.sh start-faker
+
+sleep 10
+
+./agora/cmd.sh start-relay
 
 sleep 10
 
