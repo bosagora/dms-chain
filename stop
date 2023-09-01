@@ -25,14 +25,19 @@ then
   ./agora/cmd.sh stop-db
 fi
 
-if docker-compose ls | grep -q 'nodes'
-then
-  ./agora/cmd.sh stop
-fi
-
 if docker-compose ls | grep -q 'relay'
 then
   ./agora/cmd.sh stop-relay
+fi
+
+if docker-compose ls | grep -q 'del-validators'
+then
+  ./agora/cmd.sh stop-del-validators
+fi
+
+if docker-compose ls | grep -q 'nodes'
+then
+  ./agora/cmd.sh stop
 fi
 
 if docker network ls | grep -q 'bosagora_network'

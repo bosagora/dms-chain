@@ -148,6 +148,14 @@ elif [ "$1" = "stop-relay" ]; then
 
   docker-compose -f "$agora_root"/relay/docker-compose.yml down
 
+elif [ "$1" = "start-del-validators" ]; then
+
+  docker-compose -f "$agora_root"/del-validators/docker-compose.yml up -d
+
+elif [ "$1" = "stop-del-validators" ]; then
+
+  docker-compose -f "$agora_root"/del-validators/docker-compose.yml down
+
 elif [ "$1" = "start-graph" ]; then
 
   docker-compose -f "$agora_root"/graph/docker-compose.yml up -d
