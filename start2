@@ -1,0 +1,73 @@
+#!/bin/bash
+
+if ! docker network ls | grep -q 'bosagora_network'
+then
+  ./agora/cmd.sh create-network
+  sleep 2
+fi
+
+if docker-compose ls | grep -q 'graph'
+then
+  ./agora/cmd.sh stop-graph
+  sleep 2
+fi
+
+if docker-compose ls | grep -q 'ipfs-private'
+then
+  ./agora/cmd.sh stop-ipfs
+  sleep 2
+fi
+
+if docker-compose ls | grep -q 'faker'
+then
+  ./agora/cmd.sh stop-faker
+  sleep 2
+fi
+
+if docker-compose ls | grep -q 'boa-scan'
+then
+  ./agora/cmd.sh stop-boa-scan
+  sleep 2
+fi
+
+if docker-compose ls | grep -q 'postgres'
+then
+  ./agora/cmd.sh stop-db
+  sleep 2
+fi
+
+if docker-compose ls | grep -q 'relay'
+then
+  ./agora/cmd.sh stop-relay
+fi
+
+if docker-compose ls | grep -q 'del-validators'
+then
+  ./agora/cmd.sh stop-del-validators
+fi
+
+if docker-compose ls | grep -q 'nodes'
+then
+  ./agora/cmd.sh stop
+  sleep 2
+fi
+
+./agora/cmd.sh init
+
+./agora/cmd.sh start
+
+sleep 10
+
+./agora/cmd.sh start-db
+
+sleep 5
+
+./agora/cmd.sh init-db
+
+sleep 10
+
+./agora/cmd.sh start-boa-scan
+
+
+./agora/cmd.sh start-del-validators
+
