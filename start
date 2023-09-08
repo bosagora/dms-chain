@@ -41,6 +41,11 @@ then
   ./agora/cmd.sh stop-relay
 fi
 
+if docker-compose ls | grep -q 'store'
+then
+  ./agora/cmd.sh stop-store
+fi
+
 if docker-compose ls | grep -q 'del-validators'
 then
   ./agora/cmd.sh stop-del-validators

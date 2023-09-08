@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  store-purchase:
+    container_name: store-purchase
+    hostname: store-purchase
+    image: bosagora/store-purchase:latest
+    ports:
+      - "9000:9000"
+    volumes:
+      - "./config/:/store-purchase/config/"
+      - "./env/:/store-purchase/env/"
+      - "./logs/:/store-purchase/logs/"
+      - "./db/:/store-purchase/db/"
+    restart: always
+    networks:
+      - bosagora_network
+    environment:
+      HOST_IP: 0.0.0.0
+      HOST_PORT: 9000
+      PRODUCTION_NET_URL: http://agora-el-node:8545
+      PRODUCTION_CHAIN_ID: 24680
+
+networks:
+  bosagora_network:
+    driver: bridge
+    external: true
+    internal: true

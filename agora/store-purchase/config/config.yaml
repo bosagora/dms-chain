@@ -1,0 +1,47 @@
+################################################################################
+##                             Network interface                              ##
+################################################################################
+server:
+    # Address to which we bind (default: 127.0.0.1)
+    address: "0.0.0.0"
+    # Port on which we bind (default: 9000)
+    port: 9000
+
+################################################################################
+##                               Logging options                              ##
+################################################################################
+logging:
+    # The name of the folder where the logs are stored.
+    folder: logs
+    # Values: error, warn, info, http, verbose, debug, silly
+    level: http
+    # Default to false
+    console: true
+
+node:
+  interval: 600
+  max_txs: 256
+  send_interval: 30
+  ipfs_api_url: http://ipfs:5001
+  ipfs_gateway_url: http://ipfs:8080
+  ipfs_test: true
+
+scheduler:
+  enable: true
+  items:
+    - name: node
+      enable: true
+      interval: 1
+    - name: send_block
+      enable: true
+      interval: 1
+
+database:
+  path: ${DB_PATH}
+
+contracts:
+  rollup_manager_key: ${MANAGER_KEY}
+  rollup_address: ${ROLLUP_ADDRESS}
+
+authorization:
+  api_access_token: ${ACCESS_SECRET}
