@@ -5,10 +5,10 @@ services:
     container_name: dms-osx-relay
     restart: always
     ports:
-      - '3000:3000'
+      - '7070:7070'
     environment:
       HOST_IP: 0.0.0.0
-      HOST_PORT: 3000
+      HOST_PORT: 7070
       PRODUCTION_NET_URL: http://agora-el-node:8545
       PRODUCTION_CHAIN_ID: 24680
       TOKEN_CONTRACT_ADDRESS: "0xFDa3d1ff3C570c2f76c2157Ef7A8640A75794eD9"

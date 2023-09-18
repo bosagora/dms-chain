@@ -29,12 +29,12 @@ services:
     container_name: del-validator1
     restart: always
     ports:
-      - '7081:7080'
+      - '7081:7081'
     environment:
       PRODUCTION_NET_URL: http://agora-el-node:8545
       PRODUCTION_CHAIN_ID: 24680
       NODE_HOST: 0.0.0.0
-      NODE_PORT: 7080
+      NODE_PORT: 7081
       NODE_EXTERNAL_IP: del-validator1
       NODE_DELAY_LOADING: 1000
       LOGGING_LEVEL: verbose
@@ -55,12 +55,12 @@ services:
     container_name: del-validator2
     restart: always
     ports:
-      - '7082:7080'
+      - '7082:7082'
     environment:
       PRODUCTION_NET_URL: http://agora-el-node:8545
       PRODUCTION_CHAIN_ID: 24680
       NODE_HOST: 0.0.0.0
-      NODE_PORT: 7080
+      NODE_PORT: 7082
       NODE_EXTERNAL_IP: del-validator2
       NODE_DELAY_LOADING: 1000
       LOGGING_LEVEL: verbose
