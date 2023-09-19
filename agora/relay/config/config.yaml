@@ -1,0 +1,35 @@
+################################################################################
+##                             Network interface                              ##
+################################################################################
+server:
+  # Address to which we bind (default: 127.0.0.1)
+  address: ${HOST_IP}
+  # Port on which we bind (default: 3000)
+  port: ${HOST_PORT}
+
+################################################################################
+##                               Logging options                              ##
+################################################################################
+logging:
+  # The name of the folder where the logs are stored.
+  folder: logs
+  # Values: error, warn, info, http, verbose, debug, silly
+  level: http
+  # Default to false
+  console: true
+
+relay:
+  managerKeys:
+    - ${MANAGER_KEY1}
+    - ${MANAGER_KEY2}
+    - ${MANAGER_KEY3}
+    - ${MANAGER_KEY4}
+    - ${MANAGER_KEY5}
+    - ${MANAGER_KEY6}
+    - ${MANAGER_KEY7}
+    - ${MANAGER_KEY8}
+
+contracts:
+  tokenAddress : ${TOKEN_CONTRACT_ADDRESS}
+  ledgerAddress : ${LEDGER_CONTRACT_ADDRESS}
+  emailLinkerAddress : ${EMAIL_LINKER_CONTRACT_ADDRESS}
