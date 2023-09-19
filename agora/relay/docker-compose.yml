@@ -1,11 +1,13 @@
 version: "3.3"
 services:
   dms-osx-relay:
-    image: bosagora/dms-osx-relay:v0.x.x-b36749
+    image: bosagora/dms-osx-relay:v0.x.x-9f7aa1
     container_name: dms-osx-relay
     restart: always
     ports:
       - '7070:7070'
+    volumes:
+      - ./config:/app/config
     environment:
       HOST_IP: 0.0.0.0
       HOST_PORT: 7070
@@ -14,7 +16,14 @@ services:
       TOKEN_CONTRACT_ADDRESS: "0xFDa3d1ff3C570c2f76c2157Ef7A8640A75794eD9"
       LEDGER_CONTRACT_ADDRESS: "0x52bB9258733086243Ad1a4A818945F94BCAd05B9"
       EMAIL_LINKER_CONTRACT_ADDRESS: "0xf1CEFe1b28ee6768597f177eca6616aD44C96418"
-      MANAGER_KEY: "0xf17b5048d0acdcabcc1fa5f3e1aa6753243d4309a6a30f951d5712cb50c86671"
+      MANAGER_KEY1: "0xf17b5048d0acdcabcc1fa5f3e1aa6753243d4309a6a30f951d5712cb50c86671"
+      MANAGER_KEY2: "0x75c9c2faed55e507ca76bc866d7ca9113dc46e27d714960cf08ad0cb271adb52"
+      MANAGER_KEY3: "0x4fe23c407dee94dcfe64b36d67fc1331bf0309bc8649fb440db8326f4c80288b"
+      MANAGER_KEY4: "0xce6f45e7a4ae40cac075b1a04b4b4ad31af6a524871fd52080166e959e5929c4"
+      MANAGER_KEY5: "0xc645ef34a5428f3b00f2d4b8cc647380f0b939d4ae5ccb7a04ead77ab0a8628d"
+      MANAGER_KEY6: "0x8a840e693d52e57ca028621a8692c42d2d9c368c6fe4d0c1027408b87827e6ef"
+      MANAGER_KEY7: "0x715fd086c79928e6a6d48aec36286e9bbcae51d3e9e9ba97bddff4c71be17893"
+      MANAGER_KEY8: "0xab30a305dfa39a0f97ddfa003b4e9df0ec9a2535034413c4bad59b3de1b34d7f"
     networks:
       - bosagora_network
 
