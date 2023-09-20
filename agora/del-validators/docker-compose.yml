@@ -1,11 +1,13 @@
 version: '3.3'
 services:
   del-validator0:
-    image: bosagora/del-validator:v0.x.x-974e0e
+    image: bosagora/del-validator:v0.x.x-026f37
     container_name: del-validator0
     restart: always
     ports:
       - '7080:7080'
+    volumes:
+      - ./db:/app/db
     environment:
       PRODUCTION_NET_URL: http://agora-el-node:8545
       PRODUCTION_CHAIN_ID: 24680
@@ -21,15 +23,18 @@ services:
       SMTP_PORT: 465
       SMTP_ACCOUNT: ${SMTP_ACCOUNT0}
       SMTP_PASSWORD: ${SMTP_PASSWORD0}
+      DB_PATH: db/validation0.db
     networks:
       - bosagora_network
 
   del-validator1:
-    image: bosagora/del-validator:v0.x.x-974e0e
+    image: bosagora/del-validator:v0.x.x-026f37
     container_name: del-validator1
     restart: always
     ports:
       - '7081:7081'
+    volumes:
+      - ./db:/app/db
     environment:
       PRODUCTION_NET_URL: http://agora-el-node:8545
       PRODUCTION_CHAIN_ID: 24680
@@ -45,17 +50,20 @@ services:
       SMTP_PORT: 465
       SMTP_ACCOUNT: ${SMTP_ACCOUNT1}
       SMTP_PASSWORD: ${SMTP_PASSWORD1}
+      DB_PATH: db/validation1.db
     networks:
       - bosagora_network
     depends_on:
       - del-validator0
 
   del-validator2:
-    image: bosagora/del-validator:v0.x.x-974e0e
+    image: bosagora/del-validator:v0.x.x-026f37
     container_name: del-validator2
     restart: always
     ports:
       - '7082:7082'
+    volumes:
+      - ./db:/app/db
     environment:
       PRODUCTION_NET_URL: http://agora-el-node:8545
       PRODUCTION_CHAIN_ID: 24680
@@ -71,6 +79,7 @@ services:
       SMTP_PORT: 465
       SMTP_ACCOUNT: ${SMTP_ACCOUNT2}
       SMTP_PASSWORD: ${SMTP_PASSWORD2}
+      DB_PATH: db/validation2.db
     networks:
       - bosagora_network
     depends_on:
