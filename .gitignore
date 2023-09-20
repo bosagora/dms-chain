@@ -6,3 +6,5 @@ chain/
 agora/boa-scan/logs/
 agora/boa-scan/redis-data/
 .env
+
+db/
