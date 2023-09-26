@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   dms-osx-faker:
-    image: bosagora/dms-osx-faker:v0.x.x-30cfb0
+    image: bosagora/dms-osx-faker:v0.x.x-f02f83
     container_name: dms-osx-faker
     restart: always
     environment:
