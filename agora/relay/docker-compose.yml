@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   dms-osx-relay:
-    image: bosagora/dms-osx-relay:v0.x.x-def866
+    image: bosagora/dms-osx-relay:update-216-e6703c
     container_name: dms-osx-relay
     restart: always
     ports:
@@ -15,7 +15,7 @@ services:
       PRODUCTION_CHAIN_ID: 24680
       TOKEN_CONTRACT_ADDRESS: "0xFDa3d1ff3C570c2f76c2157Ef7A8640A75794eD9"
       LEDGER_CONTRACT_ADDRESS: "0x12c316e0358d914A211A3d477db912A503cFCc21"
-      EMAIL_LINKER_CONTRACT_ADDRESS: "0xf1CEFe1b28ee6768597f177eca6616aD44C96418"
+      PHONE_LINKER_CONTRACT_ADDRESS: "0xaE7018CaF086EB2Ca62eAA7b91B61dDA6b046F70"
       MANAGER_KEY1: "0xf17b5048d0acdcabcc1fa5f3e1aa6753243d4309a6a30f951d5712cb50c86671"
       MANAGER_KEY2: "0x75c9c2faed55e507ca76bc866d7ca9113dc46e27d714960cf08ad0cb271adb52"
       MANAGER_KEY3: "0x4fe23c407dee94dcfe64b36d67fc1331bf0309bc8649fb440db8326f4c80288b"
