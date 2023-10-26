@@ -1,7 +1,25 @@
 version: '3.3'
 services:
+  sms:
+    image: bosagora/sms:v0.x.x-63451b
+    container_name: sms
+    ports:
+      - '3300:3300'
+    restart: always
+    environment:
+      HOST_IP: 0.0.0.0
+      HOST_PORT: 3300
+      LOGGING_LEVEL: verbose
+      SMS_ENDPOINT: ${SMS_SERVICE_ENDPOINT}
+      SMS_APIKEY: ${SMS_SERVICE_APIKEY}
+      SMS_USERID: ${SMS_SERVICE_USERID}
+      SMS_TESTMODE: ${SMS_SERVICE_TESTMODE}
+      SMS_ACCESSKEY: ${SMS_SERVICE_ACCESSKEY}
+    networks:
+      - bosagora_network
+
   del-validator0:
-    image: bosagora/del-validator:v0.x.x-026f37
+    image: bosagora/del-validator:v0.x.x-63451b
     container_name: del-validator0
     restart: always
     ports:
@@ -19,16 +37,15 @@ services:
       LINK_COLLECTION_ADDRESS: 0xf1CEFe1b28ee6768597f177eca6616aD44C96418
       VALIDATOR_KEY: ${VALIDATOR_KEY0}
       AUTHENTICATION_MODE: 2
-      SMTP_HOST: smtp.gmail.com
-      SMTP_PORT: 465
-      SMTP_ACCOUNT: ${SMTP_ACCOUNT0}
-      SMTP_PASSWORD: ${SMTP_PASSWORD0}
       DB_PATH: db/validation0.db
+      SMS_ENDPOINT: http://sms:3300/send
+      SMS_ACCESSKEY: ${SMS_ACCESSKEY0}
+      SMS_SENDER: ${SMS_SENDER0}
     networks:
       - bosagora_network
 
   del-validator1:
-    image: bosagora/del-validator:v0.x.x-026f37
+    image: bosagora/del-validator:v0.x.x-63451b
     container_name: del-validator1
     restart: always
     ports:
@@ -46,18 +63,17 @@ services:
       LINK_COLLECTION_ADDRESS: 0xf1CEFe1b28ee6768597f177eca6616aD44C96418
       VALIDATOR_KEY: ${VALIDATOR_KEY1}
       AUTHENTICATION_MODE: 2
-      SMTP_HOST: smtp.gmail.com
-      SMTP_PORT: 465
-      SMTP_ACCOUNT: ${SMTP_ACCOUNT1}
-      SMTP_PASSWORD: ${SMTP_PASSWORD1}
       DB_PATH: db/validation1.db
+      SMS_ENDPOINT: http://sms:3300/send
+      SMS_ACCESSKEY: ${SMS_ACCESSKEY1}
+      SMS_SENDER: ${SMS_SENDER1}
     networks:
       - bosagora_network
     depends_on:
       - del-validator0
 
   del-validator2:
-    image: bosagora/del-validator:v0.x.x-026f37
+    image: bosagora/del-validator:v0.x.x-63451b
     container_name: del-validator2
     restart: always
     ports:
@@ -75,11 +91,10 @@ services:
       LINK_COLLECTION_ADDRESS: 0xf1CEFe1b28ee6768597f177eca6616aD44C96418
       VALIDATOR_KEY: ${VALIDATOR_KEY2}
       AUTHENTICATION_MODE: 2
-      SMTP_HOST: smtp.gmail.com
-      SMTP_PORT: 465
-      SMTP_ACCOUNT: ${SMTP_ACCOUNT2}
-      SMTP_PASSWORD: ${SMTP_PASSWORD2}
       DB_PATH: db/validation2.db
+      SMS_ENDPOINT: http://sms:3300/send
+      SMS_ACCESSKEY: ${SMS_ACCESSKEY2}
+      SMS_SENDER: ${SMS_SENDER2}
     networks:
       - bosagora_network
     depends_on:
