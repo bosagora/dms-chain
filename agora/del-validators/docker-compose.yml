@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   sms:
-    image: bosagora/sms:v0.x.x-63451b
+    image: bosagora/sms:v0.x.x-dd3a09
     container_name: sms
     ports:
       - '3300:3300'
@@ -19,7 +19,7 @@ services:
       - bosagora_network
 
   del-validator0:
-    image: bosagora/del-validator:v0.x.x-63451b
+    image: bosagora/del-validator:v0.x.x-dd3a09
     container_name: del-validator0
     restart: always
     ports:
@@ -45,7 +45,7 @@ services:
       - bosagora_network
 
   del-validator1:
-    image: bosagora/del-validator:v0.x.x-63451b
+    image: bosagora/del-validator:v0.x.x-dd3a09
     container_name: del-validator1
     restart: always
     ports:
@@ -73,7 +73,7 @@ services:
       - del-validator0
 
   del-validator2:
-    image: bosagora/del-validator:v0.x.x-63451b
+    image: bosagora/del-validator:v0.x.x-dd3a09
     container_name: del-validator2
     restart: always
     ports:
