@@ -51,18 +51,18 @@ fi
 ./agora/cmd.sh start
 
 sleep 5
-
-./agora/cmd.sh start-db
-
-sleep 5
-
-./agora/cmd.sh init-db
-
-sleep 5
-
-./agora/cmd.sh start-boa-scan
-
-sleep 5
+#
+#./agora/cmd.sh start-db
+#
+#sleep 5
+#
+#./agora/cmd.sh init-db
+#
+#sleep 5
+#
+#./agora/cmd.sh start-boa-scan
+#
+#sleep 5
 
 
 CURRENT_POS="$(pwd)"
