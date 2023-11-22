@@ -87,3 +87,7 @@ sleep 10
 sleep 10
 
 ./agora/cmd.sh deploy-subgraph
+
+sleep 10
+
+./agora/cmd.sh start-del-validators
