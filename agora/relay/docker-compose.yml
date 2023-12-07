@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   dms-osx-relay:
-    image: bosagora/dms-osx-relay:v0.x.x-09a884
+    image: bosagora/dms-osx-relay:v0.x.x-337934
     container_name: dms-osx-relay
     restart: always
     ports:
