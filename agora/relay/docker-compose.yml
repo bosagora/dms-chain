@@ -1,5 +1,28 @@
 version: "3.3"
 services:
+  dms-osx-relay-db:
+    image: postgres:12.0
+    container_name: dms-osx-relay-db
+    ports:
+      - '5430:5432'
+    restart: always
+    command:
+      [
+        "postgres",
+        "-c", "shared_preload_libraries=pg_stat_statements",
+        "-c", "max_connections=1000"
+      ]
+    environment:
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_USER: agora
+      POSTGRES_DB: postgres
+      PGDATA: /postgresql/data
+      POSTGRES_INITDB_ARGS: "-E UTF8 --locale=C"
+    volumes:
+      - relay_db_volume:/postgresql/data
+    networks:
+      - bosagora_network
+
   dms-osx-relay:
     image: bosagora/dms-osx-relay:v0.x.x-337934
     container_name: dms-osx-relay
@@ -13,7 +36,7 @@ services:
       HOST_PORT: 7070
       PRODUCTION_NET_URL: http://agora-el-node:8545
       PRODUCTION_CHAIN_ID: 24680
-      DATABASE_HOST: "postgres"
+      DATABASE_HOST: "dms-osx-relay-db"
       DATABASE_USER: "agora"
       DATABASE_NAME: "postgres"
       DATABASE_PASSWORD: "12345678"
@@ -40,6 +63,9 @@ services:
       EXPO_ACCESS_TOKEN: ${EXPO_ACCESS_TOKEN}
     networks:
       - bosagora_network
+
+volumes:
+  relay_db_volume:
 
 networks:
   bosagora_network:
