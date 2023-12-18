@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   sms:
-    image: bosagora/sms:v0.x.x-055737
+    image: bosagora/sms:v0.x.x-23b19e
     container_name: sms
     ports:
       - '3300:3300'
@@ -19,7 +19,7 @@ services:
       - bosagora_network
 
   del-validator0:
-    image: bosagora/del-validator:v0.x.x-2de8e4
+    image: bosagora/del-validator:v0.x.x-23b19e
     container_name: del-validator0
     restart: always
     ports:
@@ -31,7 +31,7 @@ services:
       PRODUCTION_CHAIN_ID: 24680
       NODE_HOST: 0.0.0.0
       NODE_PORT: 7080
-      NODE_EXTERNAL_IP: 221.147.70.56
+      NODE_EXTERNAL_IP: ${EXTERNAL_IP}
       NODE_DELAY_LOADING: 1000
       LOGGING_LEVEL: verbose
       LINK_COLLECTION_ADDRESS: 0xf1CEFe1b28ee6768597f177eca6616aD44C96418
@@ -45,7 +45,7 @@ services:
       - bosagora_network
 
   del-validator1:
-    image: bosagora/del-validator:v0.x.x-2de8e4
+    image: bosagora/del-validator:v0.x.x-23b19e
     container_name: del-validator1
     restart: always
     ports:
@@ -57,7 +57,7 @@ services:
       PRODUCTION_CHAIN_ID: 24680
       NODE_HOST: 0.0.0.0
       NODE_PORT: 7081
-      NODE_EXTERNAL_IP: 221.147.70.56
+      NODE_EXTERNAL_IP: ${EXTERNAL_IP}
       NODE_DELAY_LOADING: 1000
       LOGGING_LEVEL: verbose
       LINK_COLLECTION_ADDRESS: 0xf1CEFe1b28ee6768597f177eca6616aD44C96418
@@ -73,7 +73,7 @@ services:
       - del-validator0
 
   del-validator2:
-    image: bosagora/del-validator:v0.x.x-2de8e4
+    image: bosagora/del-validator:v0.x.x-23b19e
     container_name: del-validator2
     restart: always
     ports:
@@ -85,7 +85,7 @@ services:
       PRODUCTION_CHAIN_ID: 24680
       NODE_HOST: 0.0.0.0
       NODE_PORT: 7082
-      NODE_EXTERNAL_IP: 221.147.70.56
+      NODE_EXTERNAL_IP: ${EXTERNAL_IP}
       NODE_DELAY_LOADING: 1000
       LOGGING_LEVEL: verbose
       LINK_COLLECTION_ADDRESS: 0xf1CEFe1b28ee6768597f177eca6616aD44C96418

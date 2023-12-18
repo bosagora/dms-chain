@@ -70,7 +70,7 @@ cd submodules/del-osx
 yarn install --pure-lockfile
 cd packages/contracts
 cp -f env/.env.sample env/.env
-rm -rf deployments
+rm -rf .openzeppelin
 yarn deploy:devnet
 
 cd "$CURRENT_POS"
@@ -79,7 +79,7 @@ cd submodules/dms-osx
 yarn install --pure-lockfile
 cd packages/contracts
 cp -f env/.env.sample env/.env
-rm -rf deployments
+rm -rf .openzeppelin
 yarn deploy:devnet
 
 cd "$CURRENT_POS"
