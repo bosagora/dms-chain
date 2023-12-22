@@ -11,6 +11,12 @@ then
   ./agora/cmd.sh stop-graph
 fi
 
+if docker-compose ls | grep -q 'store-purchase'
+then
+  ./agora/cmd.sh stop-store-purchase
+  sleep 2
+fi
+
 if docker-compose ls | grep -q 'ipfs-private'
 then
   ./agora/cmd.sh stop-ipfs
@@ -76,6 +82,15 @@ yarn deploy:devnet
 cd "$CURRENT_POS"
 
 cd submodules/dms-osx
+yarn install --pure-lockfile
+cd packages/contracts
+cp -f env/.env.sample env/.env
+rm -rf .openzeppelin
+yarn deploy:devnet
+
+cd "$CURRENT_POS"
+
+cd submodules/dms-store-purchase
 yarn install --pure-lockfile
 cd packages/contracts
 cp -f env/.env.sample env/.env

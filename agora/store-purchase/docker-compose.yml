@@ -1,0 +1,52 @@
+version: '3.7'
+
+services:
+  store-purchase:
+    container_name: store-purchase
+    image: bosagora/dms-store-purchase:v0.x.x-1f7db2
+    ports:
+      - "3030:3030"
+    volumes:
+      - "./config/:/app/config/"
+      - "./db/:/app/db/"
+    restart: always
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    environment:
+      PRODUCTION_NET_URL: http://agora-el-node:8545
+      PRODUCTION_CHAIN_ID: 24680
+      HOST_IP: "0.0.0.0"
+      HOST_PORT: 3030
+      LOGGING_LEVEL: "verbose"
+      DATABASE_PATH: "db/purchase.db"
+      NODE_INTERVAL: 60
+      NODE_MAX_TXS: 256
+      NODE_SEND_INTERVAL: 30
+      NODE_IPFS_API_URL: "http://ipfs0:5001"
+      NODE_IPFS_GATEWAY_URL: "http://ipfs0:8080"
+      NODE_IPFS_TEST: false
+      MANAGER_KEY: ${MANAGER_KEY}
+      ACCESS_KEY: ${ACCESS_KEY}
+      STORE_PURCHASE_CONTRACT_ADDRESS: ${STORE_PURCHASE_CONTRACT_ADDRESS}
+    command: sh -c "/app/docker/entrypoint.sh"
+    networks:
+      - bosagora_network
+
+  store-purchase-client:
+    container_name: store-purchase-client
+    image: bosagora/dms-store-purchase:v0.x.x-1f7db2
+    restart: always
+    environment:
+      SERVER_URL: "http://store-purchase:3030"
+      ACCESS_KEY: ${ACCESS_KEY}
+      INTERVAL: 3
+      BLOCK_INTERVAL: 600
+    command: sh -c "/app/docker/entrypoint_client.sh"
+    networks:
+      - bosagora_network
+
+networks:
+  bosagora_network:
+    driver: bridge
+    external: true
+    internal: true

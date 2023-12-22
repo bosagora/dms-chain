@@ -12,6 +12,12 @@ then
   sleep 2
 fi
 
+if docker-compose ls | grep -q 'store-purchase'
+then
+  ./agora/cmd.sh stop-store-purchase
+  sleep 2
+fi
+
 if docker-compose ls | grep -q 'ipfs-private'
 then
   ./agora/cmd.sh stop-ipfs
@@ -78,3 +84,7 @@ sleep 10
 sleep 10
 
 ./agora/cmd.sh start-relay
+
+sleep 10
+
+./agora/cmd.sh start-store-purchase

@@ -4,3 +4,6 @@
 [submodule "submodules/del-osx"]
 	path = submodules/del-osx
 	url = https://github.com/bosagora/del-osx.git
+[submodule "submodules/dms-store-purchase"]
+	path = submodules/dms-store-purchase
+	url = https://github.com/bosagora/dms-store-purchase.git

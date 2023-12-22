@@ -1,0 +1,43 @@
+################################################################################
+##                             Network interface                              ##
+################################################################################
+server:
+    # Address to which we bind (default: 127.0.0.1)
+    address: "${HOST_IP}"
+    # Port on which we bind (default: 3000)
+    port: "${HOST_PORT}"
+
+################################################################################
+##                               Logging options                              ##
+################################################################################
+logging:
+  # Values: error, warn, info, http, verbose, debug, silly
+  level: "${LOGGING_LEVEL}"
+
+database:
+  path: "${DATABASE_PATH}"
+
+node:
+  interval: ${NODE_INTERVAL}
+  max_txs: ${NODE_MAX_TXS}
+  send_interval: ${NODE_SEND_INTERVAL}
+  ipfs_api_url: "${NODE_IPFS_API_URL}"
+  ipfs_gateway_url: "${NODE_IPFS_GATEWAY_URL}"
+  ipfs_test: ${NODE_IPFS_TEST}
+
+scheduler:
+  enable: true
+  items:
+    - name: node
+      enable: true
+      expression: "*/1 * * * * *"
+    - name: send_block
+      enable: true
+      expression: "*/14 * * * * *"
+
+contracts:
+  managerKey: "${MANAGER_KEY}"
+  purchaseAddress: "${STORE_PURCHASE_CONTRACT_ADDRESS}"
+
+authorization:
+  accessKey: "${ACCESS_KEY}"
