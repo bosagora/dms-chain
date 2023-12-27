@@ -78,3 +78,18 @@ sleep 5
 sleep 10
 
 ./agora/cmd.sh start-boa-scan
+
+sleep 10
+
+./agora/cmd.sh start-ipfs
+
+sleep 10
+
+./agora/cmd.sh start-graph
+
+sleep 10
+
+./agora/cmd.sh start-sms
+
+sleep 10
+

@@ -164,6 +164,14 @@ elif [ "$1" = "stop-del-validators" ]; then
 
   docker-compose -f "$agora_root"/del-validators/docker-compose.yml down
 
+elif [ "$1" = "start-sms" ]; then
+
+  docker-compose -f "$agora_root"/sms/docker-compose.yml up -d
+
+elif [ "$1" = "stop-sms" ]; then
+
+  docker-compose -f "$agora_root"/sms/docker-compose.yml down
+
 elif [ "$1" = "start-graph" ]; then
 
   docker-compose -f "$agora_root"/graph/docker-compose.yml up -d

@@ -3,7 +3,7 @@ version: '3.7'
 services:
   store-purchase:
     container_name: store-purchase
-    image: bosagora/dms-store-purchase:v0.x.x-437a8d
+    image: bosagora/dms-store-purchase:v0.x.x-361d87
     ports:
       - "3030:3030"
     volumes:
@@ -26,24 +26,31 @@ services:
       NODE_IPFS_GATEWAY_URL: "http://ipfs0:8080"
       NODE_IPFS_TEST: false
       MANAGER_KEY: ${MANAGER_KEY}
-      ACCESS_KEY: ${ACCESS_KEY}
       STORE_PURCHASE_CONTRACT_ADDRESS: ${STORE_PURCHASE_CONTRACT_ADDRESS}
+      ACCESS_KEY: ${ACCESS_KEY}
+      RELAY_ENDPOINT: ${RELAY_ENDPOINT}
+      RELAY_ACCESS_KEY: ${RELAY_ACCESS_KEY}
+      SMS_ENDPOINT: ${SMS_ENDPOINT}
+      SMS_ACCESS_KEY: ${SMS_ACCESS_KEY}
+      SMS_SENDER: ${SMS_SENDER}
+      TOKEN_SYMBOL: ${TOKEN_SYMBOL}
+      MESSAGE_ENABLE: ${MESSAGE_ENABLE}
     command: sh -c "/app/docker/entrypoint.sh"
     networks:
       - bosagora_network
 
-#  store-purchase-client:
-#    container_name: store-purchase-client
-#    image: bosagora/dms-store-purchase:v0.x.x-437a8d
-#    restart: always
-#    environment:
-#      SERVER_URL: "http://store-purchase:3030"
-#      ACCESS_KEY: ${ACCESS_KEY}
-#      INTERVAL: 3
-#      BLOCK_INTERVAL: 600
-#    command: sh -c "/app/docker/entrypoint_client.sh"
-#    networks:
-#      - bosagora_network
+  store-purchase-client:
+    container_name: store-purchase-client
+    image: bosagora/dms-store-purchase:v0.x.x-361d87
+    restart: always
+    environment:
+      SERVER_URL: "http://store-purchase:3030"
+      ACCESS_KEY: ${ACCESS_KEY}
+      INTERVAL: 3
+      BLOCK_INTERVAL: 600
+    command: sh -c "/app/docker/entrypoint_client.sh"
+    networks:
+      - bosagora_network
 
 networks:
   bosagora_network:

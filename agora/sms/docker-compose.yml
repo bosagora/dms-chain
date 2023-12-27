@@ -1,0 +1,25 @@
+version: '3.3'
+services:
+  sms:
+    image: bosagora/sms:v0.x.x-b600e3
+    container_name: sms
+    ports:
+      - '3300:3300'
+    restart: always
+    environment:
+      HOST_IP: 0.0.0.0
+      HOST_PORT: 3300
+      LOGGING_LEVEL: verbose
+      SMS_ENDPOINT: ${SMS_SERVICE_ENDPOINT}
+      SMS_APIKEY: ${SMS_SERVICE_APIKEY}
+      SMS_USERID: ${SMS_SERVICE_USERID}
+      SMS_TESTMODE: ${SMS_SERVICE_TESTMODE}
+      SMS_ACCESSKEY: ${SMS_SERVICE_ACCESSKEY}
+    networks:
+      - bosagora_network
+
+networks:
+  bosagora_network:
+    driver: bridge
+    external: true
+    internal: true

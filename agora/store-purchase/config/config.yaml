@@ -39,5 +39,12 @@ contracts:
   managerKey: "${MANAGER_KEY}"
   purchaseAddress: "${STORE_PURCHASE_CONTRACT_ADDRESS}"
 
-authorization:
+setting:
   accessKey: "${ACCESS_KEY}"
+  relayEndpoint: "${RELAY_ENDPOINT}"
+  relayAccessKey: "${RELAY_ACCESS_KEY}"
+  smsEndpoint: "${SMS_ENDPOINT}"
+  smsAccessKey: "${SMS_ACCESS_KEY}"
+  smsSender: "${SMS_SENDER}"
+  tokenSymbol: "${TOKEN_SYMBOL}"
+  messageEnable: "${MESSAGE_ENABLE}"
