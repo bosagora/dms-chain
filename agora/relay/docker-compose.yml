@@ -24,7 +24,7 @@ services:
       - bosagora_network
 
   dms-osx-relay:
-    image: bosagora/dms-osx-relay:v0.x.x-6d7ce7
+    image: bosagora/dms-osx-relay:v0.x.x-311de3
     container_name: dms-osx-relay
     restart: always
     ports:
