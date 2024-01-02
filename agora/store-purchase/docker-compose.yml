@@ -38,19 +38,6 @@ services:
     command: sh -c "/app/docker/entrypoint.sh"
     networks:
       - bosagora_network
-#
-#  store-purchase-client:
-#    container_name: store-purchase-client
-#    image: bosagora/dms-store-purchase:v0.x.x-361d87
-#    restart: always
-#    environment:
-#      SERVER_URL: "http://store-purchase:3030"
-#      ACCESS_KEY: ${ACCESS_KEY}
-#      INTERVAL: 3
-#      BLOCK_INTERVAL: 600
-#    command: sh -c "/app/docker/entrypoint_client.sh"
-#    networks:
-#      - bosagora_network
 
 networks:
   bosagora_network:

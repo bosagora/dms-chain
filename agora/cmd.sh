@@ -150,11 +150,20 @@ elif [ "$1" = "stop-relay" ]; then
 
 elif [ "$1" = "start-store-purchase" ]; then
 
+  sudo rm -rf "$agora_root"/store-purchase/db
   docker-compose -f "$agora_root"/store-purchase/docker-compose.yml up -d
 
 elif [ "$1" = "stop-store-purchase" ]; then
 
   docker-compose -f "$agora_root"/store-purchase/docker-compose.yml down
+
+elif [ "$1" = "start-store-purchase-client" ]; then
+
+  docker-compose -f "$agora_root"/store-purchase-client/docker-compose.yml up -d
+
+elif [ "$1" = "stop-store-purchase-client" ]; then
+
+  docker-compose -f "$agora_root"/store-purchase-client/docker-compose.yml down
 
 elif [ "$1" = "start-del-validators" ]; then
 

@@ -12,6 +12,12 @@ then
   sleep 2
 fi
 
+if docker-compose ls | grep -q 'store-purchase-client'
+then
+  ./agora/cmd.sh stop-store-purchase-client
+  sleep 2
+fi
+
 if docker-compose ls | grep -q 'store-purchase'
 then
   ./agora/cmd.sh stop-store-purchase
