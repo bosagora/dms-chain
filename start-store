@@ -12,6 +12,11 @@ then
   sleep 2
 fi
 
+if docker-compose ls | grep -q 'validators'
+then
+  ./agora/cmd.sh stop-dms-validators
+fi
+
 if docker-compose ls | grep -q 'store-purchase-client'
 then
   ./agora/cmd.sh stop-store-purchase-client
@@ -58,7 +63,6 @@ then
   ./agora/cmd.sh stop-del-validators
 fi
 
-
 if docker-compose ls | grep -q 'sms'
 then
   ./agora/cmd.sh stop-sms
@@ -92,6 +96,10 @@ sleep 10
 
 sleep 10
 
+./agora/cmd.sh start-graph
+
+sleep 10
+
 ./agora/cmd.sh start-sms
 
 sleep 10
@@ -104,4 +112,12 @@ sleep 10
 
 sleep 10
 
+./agora/cmd.sh deploy-subgraph
+
+sleep 10
+
 ./agora/cmd.sh start-store-purchase-client
+
+sleep 10
+
+./agora/cmd.sh start-dms-validators

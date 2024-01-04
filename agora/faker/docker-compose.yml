@@ -1,8 +1,8 @@
 version: "3.3"
 services:
-  dms-osx-faker:
-    image: bosagora/dms-osx-faker:v0.x.x-311de3
-    container_name: dms-osx-faker
+  dms-faker:
+    image: bosagora/dms-faker:v0.x.x-c819e3
+    container_name: dms-faker
     restart: always
     environment:
       PRODUCTION_NET_URL: http://agora-el-node:8545

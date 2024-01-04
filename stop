@@ -5,6 +5,11 @@ then
   ./agora/cmd.sh stop-graph
 fi
 
+if docker-compose ls | grep -q 'validators'
+then
+  ./agora/cmd.sh stop-dms-validators
+fi
+
 if docker-compose ls | grep -q 'store-purchase-client'
 then
   ./agora/cmd.sh stop-store-purchase-client

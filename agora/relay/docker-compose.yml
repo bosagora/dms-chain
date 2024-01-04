@@ -1,8 +1,8 @@
 version: "3.3"
 services:
-  dms-osx-relay-db:
+  dms-relay-db:
     image: postgres:12.0
-    container_name: dms-osx-relay-db
+    container_name: dms-relay-db
     ports:
       - '5430:5432'
     restart: always
@@ -23,9 +23,9 @@ services:
     networks:
       - bosagora_network
 
-  dms-osx-relay:
-    image: bosagora/dms-osx-relay:v0.x.x-311de3
-    container_name: dms-osx-relay
+  dms-relay:
+    image: bosagora/dms-relay:v0.x.x-ef743b
+    container_name: dms-relay
     restart: always
     ports:
       - '7070:7070'
@@ -36,7 +36,7 @@ services:
       HOST_PORT: 7070
       PRODUCTION_NET_URL: http://agora-el-node:8545
       PRODUCTION_CHAIN_ID: 24680
-      DATABASE_HOST: "dms-osx-relay-db"
+      DATABASE_HOST: "dms-relay-db"
       DATABASE_USER: "agora"
       DATABASE_NAME: "postgres"
       DATABASE_SCHEME:

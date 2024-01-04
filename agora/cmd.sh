@@ -150,7 +150,7 @@ elif [ "$1" = "stop-relay" ]; then
 
 elif [ "$1" = "start-store-purchase" ]; then
 
-  sudo rm -rf "$agora_root"/store-purchase/db
+  rm -rf "$agora_root"/store-purchase/db
   docker-compose -f "$agora_root"/store-purchase/docker-compose.yml up -d
 
 elif [ "$1" = "stop-store-purchase" ]; then
@@ -188,6 +188,14 @@ elif [ "$1" = "start-graph" ]; then
 elif [ "$1" = "stop-graph" ]; then
 
   docker-compose -f "$agora_root"/graph/docker-compose.yml down
+
+elif [ "$1" = "start-dms-validators" ]; then
+
+  docker-compose -f "$agora_root"/validators/docker-compose.yml up -d
+
+elif [ "$1" = "stop-dms-validators" ]; then
+
+  docker-compose -f "$agora_root"/validators/docker-compose.yml down
 
 elif [ "$1" = "create-network" ]; then
 
